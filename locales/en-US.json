@@ -62,5 +62,11 @@
   "签到成功": "Checked in",
   "今天已经签过了": "Already checked in today",
   "本月已签": "Signed this month:",
-  "签到失败，请稍后再试": "Check-in failed, try again later"
+  "签到失败，请稍后再试": "Check-in failed, try again later",
+  "音质": "Audio quality",
+  "改完要等下一首生效：已经取过的音频缓存会清掉。选中某一档但酷狗没有这档时，自动往下降。": "Takes effect from the next track on; cached audio is cleared when you change it. If Kugou has no such quality, it falls back to a lower one.",
+  "跟随播放器（320k）": "Follow the player (320k)",
+  "标准 128k": "Standard 128k",
+  "高 320k": "High 320k",
+  "无损 FLAC": "Lossless FLAC"
 }

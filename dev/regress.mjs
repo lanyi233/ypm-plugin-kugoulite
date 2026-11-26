@@ -125,6 +125,32 @@ if (sample) {
     });
   }
 }
+// 宿主调 sources.stream() 时不传 quality，插件永远收到 high，所以音质只能由
+// 插件自己的设置项决定。这里逐个换设置，确认真的换了档位。
+if (sample) {
+  await run('音质设置覆盖宿主参数', async () => {
+    const out = [];
+    for (const set of ['standard', 'high', 'lossless']) {
+      const { mod: alt } = await loadPlugin({ settings: { quality: set } });
+      try {
+        const s = await alt.stream({ id: sample.id, quality: 'high' });
+        if (s.quality !== set) throw new Error('设置 ' + set + ' 却拿到 ' + s.quality);
+        out.push(set);
+      } catch (e) {
+        if (e.code === 'unavailable') { out.push(set + '(跳过)'); continue; }
+        throw e;
+      }
+    }
+    return out.join(' → ');
+  });
+  await run('音质设置非法值回落宿主参数', async () => {
+    const { mod: alt } = await loadPlugin({ settings: { quality: 'bogus' } });
+    const s = await alt.stream({ id: sample.id, quality: 'high' });
+    if (s.quality !== 'high') throw new Error('应该回落 high，实际 ' + s.quality);
+    return 'high';
+  });
+}
+
 if (sample) {
   await run('lyrics', async () => {
     const r = await mod.lyrics({ id: sample.id });

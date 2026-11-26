@@ -1,7 +1,7 @@
 {
   "id": "kugou-lite",
   "name": "酷狗音乐 Lite",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "把酷狗曲库接进 YesPlayMusic：搜索、歌单、排行榜、每日推荐，点歌即播，能管自己的歌单，还会自动签到来领会员。",
   "author": "lanyi233",
   "icon": "icon.png",
@@ -14,6 +14,19 @@
     ]
   },
   "settings": [
+    {
+      "key": "quality",
+      "label": "音质",
+      "help": "改完要等下一首生效：已经取过的音频缓存会清掉。选中某一档但酷狗没有这档时，自动往下降。",
+      "type": "select",
+      "default": "",
+      "options": [
+        { "value": "", "label": "跟随播放器（320k）" },
+        { "value": "standard", "label": "标准 128k" },
+        { "value": "high", "label": "高 320k" },
+        { "value": "lossless", "label": "无损 FLAC" }
+      ]
+    },
     {
       "key": "autoCheckin",
       "label": "自动签到",

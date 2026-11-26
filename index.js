@@ -1693,10 +1693,22 @@ async function findLikedFileId(hash) {
   return 0;
 }
 
+// 插件设置里选的音质。空字符串表示「跟随播放器」，用宿主传进来的那一档。
+// 宿主现在固定传 high（lib/state.dart 调 sources.stream 不带 quality），
+// 所以想让用户自己选，只能在插件侧覆盖。
+function settingQuality() {
+  let v = '';
+  try { v = String(host.setting('quality') || '').trim(); } catch (e) { v = ''; }
+  // 用 hasOwnProperty 而不是直接取：QUALITY_CHAIN 是普通对象，
+  // 直接 QUALITY_CHAIN['constructor'] 会拿到构造函数，不是档位。
+  return Object.prototype.hasOwnProperty.call(QUALITY_CHAIN, v) ? v : '';
+}
+
 export async function stream({ id, quality }) {
   const t = parseId(id);
   if (!t.hash) throw fail(T('这首歌没有可播放的地址'), 'unavailable');
-  return await songUrl(t.hash, t.albumId, t.audioId, String(quality || 'high'));
+  const q = settingQuality() || String(quality || 'high');
+  return await songUrl(t.hash, t.albumId, t.audioId, q);
 }
 
 export async function lyrics({ id }) {
