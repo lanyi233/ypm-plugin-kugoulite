@@ -1,0 +1,12 @@
+{
+  "name": "ypm-plugin-kugoulite",
+  "version": "1.2.1",
+  "private": true,
+  "description": "YesPlayMusic 的酷狗音乐 Lite 插件",
+  "type": "module",
+  "scripts": {
+    "check": "node dev/check.mjs",
+    "regress": "node dev/regress.mjs"
+  },
+  "license": "MIT"
+}

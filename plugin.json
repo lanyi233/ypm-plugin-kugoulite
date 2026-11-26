@@ -1,0 +1,39 @@
+{
+  "id": "kugou-lite",
+  "name": "酷狗音乐 Lite",
+  "version": "1.2.1",
+  "description": "把酷狗曲库接进 YesPlayMusic：搜索、歌单、排行榜、每日推荐，点歌即播，能管自己的歌单，还会自动签到来领会员。",
+  "author": "lanyi233",
+  "icon": "icon.png",
+  "minAppVersion": "3.0.0",
+  "main": "index.js",
+  "playback": "stream",
+  "permissions": {
+    "network": [
+      "*.kugou.com"
+    ]
+  },
+  "settings": [
+    {
+      "key": "autoCheckin",
+      "label": "自动签到",
+      "help": "应用启动后自动领一次每日会员，之后每 15 分钟检查一次。",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "navigation": [
+    {
+      "title": "排行榜",
+      "page": "rank"
+    },
+    {
+      "title": "推荐歌单",
+      "page": "playlist"
+    },
+    {
+      "title": "每日推荐",
+      "page": "daily"
+    }
+  ]
+}

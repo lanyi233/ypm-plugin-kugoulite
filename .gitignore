@@ -1,0 +1,7 @@
+# 本地自测用的账号存档，里面有登录 token，绝不能提交
+dev/storage.json
+dev/*.storage.json
+
+node_modules/
+*.log
+.DS_Store
